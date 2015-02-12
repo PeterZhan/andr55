@@ -13,22 +13,22 @@ import java.util.Map;
 import java.util.Set;
 
 
+
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-
 import android.content.DialogInterface;
-
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -81,6 +81,8 @@ public class QuizFragment extends Fragment
    private boolean isFirstTry;
    
    private List<Integer> scores;
+   
+  // private String currentGuess;
    
    
    
@@ -396,6 +398,32 @@ public class QuizFragment extends Fragment
    };
    
    
+   DialogInterface.OnClickListener choiceOnClick = new DialogInterface.OnClickListener() {
+       @Override
+       public void onClick(DialogInterface dialog, int which) {
+           // the user clicked on colors[which]
+       	if (which == 1)
+       	{
+       		
+       		   String answer = getCountryName(correctAnswer);
+               String urlString = getString(R.string.searchURL) + answer;
+               
+               // create an Intent to launch a web browser    
+               Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));                      
+
+               startActivity(webIntent); 
+       		
+       		
+       		
+       	}
+       	
+       	
+       	
+       	
+       }
+   };
+   
+   
    // called when a guess Button is touched
    private OnClickListener guessButtonListener = new OnClickListener() 
    {
@@ -420,6 +448,50 @@ public class QuizFragment extends Fragment
                getResources().getColor(R.color.correct_answer));
 
             disableButtons(); // disable all guess Buttons
+            
+                    
+            
+            
+            
+            CharSequence choices[] = new CharSequence[] {"Continue", answer + " on Wikepedia"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setCancelable(false);
+            builder.setTitle("Choices");
+            builder.setItems(choices, choiceOnClick);
+            /*new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // the user clicked on colors[which]
+                	if (which == 1)
+                	{
+                		
+                		
+                        String urlString = getString(R.string.searchURL) + ;
+                        
+                        // create an Intent to launch a web browser    
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW, 
+                           Uri.parse(urlString));                      
+
+                        startActivity(webIntent); 
+                		
+                		
+                		
+                	}
+                	
+                	
+                	
+                	
+                }
+            });*/
+            builder.show();
+            
+            
+            
+            
+            
+            
+            
             
             // if the user has correctly identified FLAGS_IN_QUIZ flags
             if (correctAnswers == FLAGS_IN_QUIZ) 

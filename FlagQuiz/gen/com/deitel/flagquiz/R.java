@@ -89,6 +89,7 @@ public final class R {
         public static final int reset_quiz=0x7f09000e;
         public static final int restarting_quiz=0x7f09000b;
         public static final int results=0x7f090008;
+        public static final int searchURL=0x7f090013;
         public static final int settings_activity=0x7f090002;
         public static final int username=0x7f090011;
         public static final int world_regions=0x7f090005;

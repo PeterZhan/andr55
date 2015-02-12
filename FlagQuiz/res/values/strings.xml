@@ -20,5 +20,6 @@
     <string name="default_region">North_America</string>
     <string name="username">User Name</string>
     <string name="yourname">Your User Name</string>
+    <string name="searchURL">http://en.wikipedia.org/wiki/</string>
 
 </resources>
