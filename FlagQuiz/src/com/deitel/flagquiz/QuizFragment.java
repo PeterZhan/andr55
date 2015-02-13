@@ -82,7 +82,7 @@ public class QuizFragment extends Fragment
    
    private List<Integer> scores;
    
-  // private String currentGuess;
+   private String currentGuess;
    
    
    
@@ -405,7 +405,7 @@ public class QuizFragment extends Fragment
        	if (which == 1)
        	{
        		
-       		   String answer = getCountryName(correctAnswer);
+       		   String answer = currentGuess;
                String urlString = getString(R.string.searchURL) + answer;
                
                // create an Intent to launch a web browser    
@@ -439,6 +439,9 @@ public class QuizFragment extends Fragment
          {
             ++correctAnswers; // increment the number of correct answers
 
+            
+            currentGuess = answer;
+            
             if (isFirstTry)
             	firstGuessRight ++;
             
